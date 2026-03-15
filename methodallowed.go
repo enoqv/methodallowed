@@ -1,4 +1,4 @@
-package MethodAllowed
+package methodallowed
 
 import (
 	"context"
@@ -18,19 +18,19 @@ func CreateConfig() *Config {
 	}
 }
 
-type MethodAllowed struct {
+type methodallowed struct {
 	cfg  *Config
 	next http.Handler
 }
 
 func New(ctx context.Context, next http.Handler, config *Config, name string) (http.Handler, error) {
-	return &MethodAllowed{
+	return &methodallowed{
 		cfg:  config,
 		next: next,
 	}, nil
 }
 
-func (m *MethodAllowed) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
+func (m *methodallowed) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 	for _, method := range m.cfg.Methods {
 		if method == req.Method {
 			m.next.ServeHTTP(rw, req)

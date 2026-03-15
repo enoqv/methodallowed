@@ -1,4 +1,4 @@
-package MethodAllowed_test
+package methodallowed_test
 
 import (
 	"context"
@@ -6,20 +6,20 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	MethodAllowed "github.com/enoqv/method_allowed"
+	methodallowed "github.com/enoqv/methodallowed"
 )
 
 func TestBlock(t *testing.T) {
 	ctx := context.Background()
 	nextCall := false
 	next := http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) { nextCall = true })
-	cfg := MethodAllowed.CreateConfig()
+	cfg := methodallowed.CreateConfig()
 	cfg.Message = "Method not Allowed"
 	cfg.Methods = []string{"DELETE", "HEAD"}
-	handler, err := MethodAllowed.New(ctx, next, cfg, "pluginName")
+	handler, err := methodallowed.New(ctx, next, cfg, "pluginName")
 
 	if err != nil {
-		t.Fatalf("New MethodAllowed error: %+v\n", err)
+		t.Fatalf("New methodallowed error: %+v\n", err)
 	}
 
 	{
@@ -61,13 +61,13 @@ func TestPass(t *testing.T) {
 	nextCall := false
 	next := http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) { nextCall = true })
 
-	cfg := MethodAllowed.CreateConfig()
+	cfg := methodallowed.CreateConfig()
 	cfg.Message = "Method not Allowed"
 	cfg.Methods = []string{"GET", "POST"}
-	handler, err := MethodAllowed.New(ctx, next, cfg, "pluginName")
+	handler, err := methodallowed.New(ctx, next, cfg, "pluginName")
 
 	if err != nil {
-		t.Fatalf("New MethodAllowed error: %+v\n", err)
+		t.Fatalf("New methodallowed error: %+v\n", err)
 	}
 
 	{
