@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/JimmyTsai16/MethodAllowed"
+	MethodAllowed "github.com/enoqv/method_allowed"
 )
 
 func TestBlock(t *testing.T) {
