@@ -7,8 +7,8 @@ config example
 
 experimental:
   plugins:
-    method_allowed:
-        moduleName: github.com/enoqv/method_allowed
+    methodallowed:
+        moduleName: github.com/enoqv/methodallowed
         version: v0.1.4
 
 ```
@@ -35,7 +35,7 @@ http:
   middlewares:
     my-plugin:
       plugin:
-        method_allowed:
+        methodallowed:
           Message: "Method Allowed"
           Methods:
             - GET
